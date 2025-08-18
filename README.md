@@ -1,3 +1,6 @@
+![Python](https://img.shields.io/badge/python-3.11-blue)
+![Streamlit](https://img.shields.io/badge/Streamlit-Cloud-green)
+
 # Cognitive SOAR — From Prediction to Attribution
 
 Enhances a Mini-SOAR demo by adding **threat attribution** via **unsupervised clustering**.
