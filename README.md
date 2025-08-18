@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Cognitive SOAR — From Prediction to Attribution
 
 Enhances a Mini-SOAR demo by adding **threat attribution** via **unsupervised clustering**.
@@ -51,3 +52,6 @@ Then open http://localhost:8501
 
 ## Pre-baked Artifacts
 This build expects pre-baked artifacts in `artifacts/`. If they are missing, run `python train_model.py` locally and commit the generated files before deploying to Streamlit Cloud.
+=======
+# SEAS_SOAR
+>>>>>>> 5fc182e3a2c14d3b514851e0696c42f0dbaa382d
