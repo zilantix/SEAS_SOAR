@@ -1,0 +1,12 @@
+version: "3.9"
+services:
+  cognitive-soar:
+    build: .
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./:/app
+    environment:
+      - PYTHONUNBUFFERED=1
+    command: >
+      bash -lc "python train_model.py && streamlit run app/app.py --server.port=8501 --server.address=0.0.0.0"
