@@ -12,13 +12,13 @@ Enhances a Mini-SOAR demo by adding **threat attribution** via **unsupervised cl
 
 ---
 
-## 🚀 Live Demo
-👉 Public Streamlit app: [seas-soar-iakupov.streamlit.app](https://seas-soar-iakupov.streamlit.app/)
+##  Live Demo
+Public Streamlit app: [seas-soar-iakupov.streamlit.app](https://seas-soar-iakupov.streamlit.app/)
 ![SOAR Streamlit Demo](docs/SOAR_scr.png)
 
 ---
 
-## ⚡ Quickstart (local)
+## Quickstart (local)
 
 ```bash
 python -m venv .venv && source .venv/bin/activate
@@ -26,14 +26,14 @@ pip install -r requirements.txt
 streamlit run app/app.py
 ```
 
-## 🧩 Architecture
+## Architecture
 ```
 [User Features] --> [Classifier] --BENIGN--> [Stop]
                                \-MALICIOUS-> [Clustering] -> [Profile Mapping] -> [Attribution]
 ```
 Artifacts saved in artifacts/:
-	•	phishing_url_detector.pkl
-	•	threat_actor_profiler.pkl
-	•	cluster_profile_map.json (maps discovered cluster → actor profile)
+		- phishing_url_detector.pkl
+	   - threat_actor_profiler.pkl
+	   - cluster_profile_map.json (maps discovered cluster → actor profile)
 
  
