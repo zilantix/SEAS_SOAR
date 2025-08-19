@@ -1,20 +1,77 @@
 # TESTING
 
-Manual test matrix for Streamlit UI:
+Open the app:
+- Local: http://localhost:8501
+- Cloud: https://seas-soar-iakupov.streamlit.app/
 
-| Case | Features (key knobs) | Expected Verdict | Expected Attribution |
-|------|-----------------------|------------------|---------------------|
-| T1 Benign | SSL=1, Prefix_Suffix=0, Shortening=0, IP=0, Abnormal=0, URL_Length~60, Anchors~0.2, PageRank~0.7, Request~0.25, Political=0 | BENIGN | (Not applicable) |
-| T2 State-Sponsored | SSL=1, Prefix_Suffix=1, Shortening=0, IP=0, Abnormal low, URL_Length~75, Anchors~0.25, PageRank~0.45, Request~0.35, Political=0 | MALICIOUS | STATE_SPONSORED |
-| T3 Organized Crime | Shortening=1, IP=1, Abnormal=1, URL_Length>100, Anchors>0.55, PageRank<0.3, Request>0.6 | MALICIOUS | ORG_CRIME |
-| T4 Hacktivist | Political=1 with mixed others (Prefix_Suffix ~1, SSL~0/1, URL_Length~85) | MALICIOUS | HACKTIVIST |
+For each case:
+1) Set the sidebar inputs.
+2) Click **Analyze** on **Prediction**.
+3) If verdict is **MALICIOUS**, open **Threat Attribution** to verify actor profile.
 
-How to run:
-1. `make train` to generate artifacts (or rely on first-run training in app).
-2. `make run` to start Streamlit.
-3. Use sidebar to set features and validate outcomes.
+---
 
-Edge checks:
-- Attribution only triggers when the verdict is MALICIOUS.
-- Confidence value appears when K-Means distances are available.
-- Playbook suggestions expand per profile.
+## A. Benign (Expected: BENIGN)
+
+SSLfinal_State: **1**  
+Prefix_Suffix: **0**  
+Shortining_Service: **0**  
+having_IP_Address: **0**  
+Abnormal_URL: **0**  
+HTTPS_token: **0**  
+URL_Length: **40–60**  
+URL_of_Anchor: **0.05–0.15**  
+Page_Rank: **0.6–0.9**  
+Request_URL: **0.1–0.2**  
+has_political_keyword: **0**
+
+Expected: **BENIGN** (Attribution not applicable)
+
+---
+
+## B. Malicious — STATE_SPONSORED (Expected: MALICIOUS → STATE_SPONSORED)
+
+SSLfinal_State: **1**  
+Prefix_Suffix: **1**  
+Shortining_Service: **0**  
+having_IP_Address: **0**  
+Abnormal_URL: **0** (or low)  
+HTTPS_token: **0**  
+URL_Length: **70–100**  
+URL_of_Anchor: **0.2–0.35**  
+Page_Rank: **0.4–0.7**  
+Request_URL: **0.2–0.4**  
+has_political_keyword: **0**
+
+---
+
+## C. Malicious — ORG_CRIME (Expected: MALICIOUS → ORG_CRIME)
+
+SSLfinal_State: **0**  
+Prefix_Suffix: **0/1**  
+Shortining_Service: **1**  
+having_IP_Address: **1**  
+Abnormal_URL: **1**  
+HTTPS_token: **0/1**  
+URL_Length: **90–140**  
+URL_of_Anchor: **0.4–0.7**  
+Page_Rank: **0.0–0.3**  
+Request_URL: **0.4–0.8**  
+has_political_keyword: **0**
+
+---
+
+## D. Malicious — HACKTIVIST (Expected: MALICIOUS → HACKTIVIST)
+
+SSLfinal_State: **0/1**  
+Prefix_Suffix: **0/1**  
+Shortining_Service: **0/1**  
+having_IP_Address: **0**  
+Abnormal_URL: **0/1**  
+HTTPS_token: **0**  
+URL_Length: **60–100**  
+URL_of_Anchor: **0.2–0.5**  
+Page_Rank: **0.3–0.6**  
+Request_URL: **0.2–0.5**  
+has_political_keyword: **1**
+
